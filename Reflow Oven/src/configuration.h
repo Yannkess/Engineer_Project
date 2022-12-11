@@ -53,6 +53,8 @@ int const voltageResolution = 1023;
 float const R1 = 4700;
 int const temperatureTabStep = 5;
 
+bool plateu = true;
+
 float const resistanceTab[]
 {
     327.24,254.8,199.990,157.600,125.245,100.000,81.000,65.650,53.500,43.780,35.899,29.990,25.00,20.900,17.550,14.760,12.540,10.660,9.1,7.784,6.710,5.850,5.070,4.410,3.850,3.340,2.940,

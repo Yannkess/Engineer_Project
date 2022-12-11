@@ -27,9 +27,13 @@ void reflowSoldering()
   switch (stage)
   {
   case 0:
-    //Serial.println(temp);
+    
     started = true;
     heater.On();
+    if (plateu == false)
+    {
+    stage = 2;
+    }
     if (temp < preheatTemp)
     {
       pid.setPoint = preheatTemp;
@@ -68,7 +72,7 @@ void reflowSoldering()
 
   case 2:
 
-    pid.setPoint = reflowTemp;
+    pid.setPoint = reflowTemp+10;
 
     if (temp1 < reflowTemp)
     {
@@ -88,7 +92,7 @@ void reflowSoldering()
       */
     }
 
-    if (temp1 > reflowTemp)
+    if (temp1 >= reflowTemp)
     {
       stage = 3;
       processTime = 0;
@@ -105,11 +109,11 @@ void reflowSoldering()
     analogWrite(A0, 0);
     */
 
-    if (temp <= 60)
+    if (temp <= 100)
     {
 
       userPick = 0;
-      display.changeScreen(0, 0, 0, 0, false, 0, 0);
+      display.changeScreen(0, 0, 0, 0, false,false,false, 0, 0);
     }
     break;
   }
@@ -131,9 +135,9 @@ void menu()
     stage = 3;
     heater.Off();
     analogWrite(A0, 0);
-    encoder.analogButtonControl(2);
+    encoder.analogButtonControl(3);
     display.baseMenu();
-    display.changeScreen(1, 2, 0, 0, false, 0, 0);
+    display.changeScreen(1, 2, 8, 0, false,false,false, 0, 0);
     break;
 
   case 1:
@@ -147,38 +151,49 @@ void menu()
     display.Draw();
     reflowSoldering();
     encoder.analogButtonControl(3);
-    display.changeScreen(0, 0, 0, 0, false, 0, 0);
+    display.changeScreen(0, 0, 0, 0, false,false,false, 0, 0);
     break;
 
   case 2:
-    encoder.analogButtonControl(2);
+    encoder.analogButtonControl(3);
     display.optionsMenu();
-    display.changeScreen(3, 4, 0, 0, false, 0, 0);
+    display.changeScreen(3, 4, 7, 0, false,false,false, 0, 0);
     break;
 
   case 3:
     encoder.analogButtonControl(2);
     display.viewMenu();
-    display.changeScreen(0, 0, 0, 1, false, 0, 0);
+    display.changeScreen(0, 0, 0, 1, false,false,false, 0, 0);
     break;
 
   case 4:
     encoder.analogButtonControl(2);
     display.temperaturesMenu();
-    display.changeScreen(5, 6, 0, 0, true, preheatTemp, reflowTemp);
+    display.changeScreen(5, 6, 0, 0, true,false,false, preheatTemp, reflowTemp);
     break;
 
   case 5:
     preheatTemp = num;
     display.preheatTempControl();
-    display.changeScreen(0, 0, 0, 0, false, 0, 0);
+    display.changeScreen(0, 0, 0, 0, false,false,false, 0, 0);
     break;
 
   case 6:
     reflowTemp = num;
     display.reflowTempControl();
-    display.changeScreen(0, 0, 0, 0, false, 0, 0);
+    display.changeScreen(0, 0, 0, 0, false,false,false, 0, 0);
     break;
+
+   case 7:
+   encoder.analogButtonControl(2);
+   display.modeMenu();
+   display.changeScreen(0, 0, 0, 0, false,true,false, 0, 0);
+   break;
+
+   case 8:
+   encoder.analogButtonControl(2);
+   display.pasteMenu();
+   display.changeScreen(0, 0, 0, 0, false,false,true, 0, 0);
 
   }
 }
@@ -189,6 +204,7 @@ void setup()
   Serial.begin(9600);
   display.begin();
   display.setRotation(1);
+  
 
   pinMode(PinA, INPUT);
   pinMode(PinB, INPUT);

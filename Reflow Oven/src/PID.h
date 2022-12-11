@@ -15,7 +15,7 @@ class PID
 private:
 public:
     int settime = 1000;
-    float Kp = 1, Ki = 0.0135, Kd = 1;
+    float Kp = 1, Ki = 0.0035, Kd = 0.7;
     float Pout, Iout, Dout;
     float currentMillis, lastMillis;
     unsigned int input;
@@ -79,6 +79,7 @@ public:
             /*Serial.print("  Output = ");
             Serial.println(output);*/
             lastMillis = currentMillis;
+            lastError = error;
 
         }
     }

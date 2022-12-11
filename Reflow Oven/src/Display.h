@@ -98,23 +98,40 @@ public:
 
             case 1:
                 fillRect(0, 0, 160, 160, BLACK);
-                fillRect(0, 44, 160, 17, RED);
-                setCursor(52, 45);
+                fillRect(0, 41, 160, 17, RED);
+                setCursor(52, 42);
                 setTextSize(2);
                 print("Start");
-                setCursor(40, 65);
+                setCursor(40, 62);
                 print("Options");
+                setCursor(8, 82);
+                print("Select Paste");
                 showed = 1;
                 break;
 
             case 2:
                 fillRect(0, 0, 160, 160, BLACK);
-                setCursor(52, 45);
+                setCursor(52, 42);
                 setTextSize(2);
                 print("Start");
-                fillRect(0, 64, 160, 17, RED);
-                setCursor(40, 65);
+                fillRect(0, 61, 160, 17, RED);
+                setCursor(40, 62);
                 print("Options");
+                setCursor(8, 82);
+                print("Select Paste");
+                showed = 1;
+                break;
+
+                 case 3:
+                fillRect(0, 0, 160, 160, BLACK);
+                setCursor(52, 42);
+                setTextSize(2);
+                print("Start");
+                setCursor(40, 62);
+                print("Options");
+                fillRect(0, 81, 160, 17, RED);
+                setCursor(8, 82);
+                print("Select Paste");
                 showed = 1;
                 break;
             }
@@ -129,33 +146,53 @@ public:
             {
             case 0:
                 fillRect(0, 0, 160, 124, BLACK);
-                setCursor(57, 45);
+                setCursor(57, 42);
                 setTextSize(2);
                 print("View");
-                setCursor(8, 65);
+                setCursor(8, 62);
                 print("Temperatures");;
+                setCursor(8, 82);
+                print("Mode");;
                 showed = 1;
                 break;
 
             case 1:
                 fillRect(0, 0, 160, 124, BLACK);
-                fillRect(0, 44, 160, 17, RED);
-                setCursor(57, 45);
+                fillRect(0, 41, 160, 17, RED);
+                setCursor(57, 42);
                 setTextSize(2);
                 print("View");
-                setCursor(8, 65);
+                setCursor(8, 62);
                 print("Temperatures");
+                setCursor(57, 82);
+                print("Mode");;
                 showed = 1;
                 break;
 
             case 2:
                 fillRect(0, 0, 160, 124, BLACK);
-                setCursor(57, 45);
+                setCursor(57, 42);
                 setTextSize(2);
                 print("View");
-                fillRect(0, 64, 160, 17, RED);
-                setCursor(8, 65);
+                fillRect(0, 61, 160, 17, RED);
+                setCursor(8, 62);
                 print("Temperatures");
+                setCursor(57, 82);
+                print("Mode");;
+                showed = 1;
+                break;
+
+
+                case 3:
+                fillRect(0, 0, 160, 124, BLACK);
+                setCursor(57, 42);
+                setTextSize(2);
+                print("View");
+                setCursor(8, 62);
+                print("Temperatures");
+                fillRect(0, 81, 160, 17, RED);
+                setCursor(57, 82);
+                print("Mode");;
                 showed = 1;
                 break;
 
@@ -288,6 +325,90 @@ public:
         }
     }
 
+    void modeMenu()
+    {
+        if (showed == 0 || changed == 1)
+        {
+            switch (choice)
+            {
+            case 0:
+                fillRect(0, 0, 160, 124, BLACK);
+                setCursor(43, 47);
+                setTextSize(2);
+                print("Preheat");
+                setCursor(48, 67);
+                print("Reflow");
+                showed = 1;
+
+                break;
+
+            case 1:
+                fillRect(0, 0, 160, 124, BLACK);
+                fillRect(0, 46, 160, 17, RED);
+                setCursor(43, 47);
+                setTextSize(2);
+                print("Preheat");
+                setCursor(48, 67);
+                print("Reflow");
+                showed = 1;
+                break;
+
+            case 2:
+                fillRect(0, 0, 160, 124, BLACK);
+                setCursor(43, 47);
+                setTextSize(2);
+                print("Preheat");
+                fillRect(0, 66, 160, 17, RED);
+                setCursor(48, 67);
+                print("Reflow");
+                showed = 1;
+                break;
+            }
+        }
+    }
+
+    void pasteMenu()
+    {
+        if (showed == 0 || changed == 1)
+        {
+            switch (choice)
+            {
+            case 0:
+                fillRect(0, 0, 160, 124, BLACK);
+                setCursor(3, 47);
+                setTextSize(1);
+                print("Sn96.5Ag3Cu0.5");
+                setCursor(3, 67);
+                print("Sn62Pb36Ag2");
+                showed = 1;
+
+                break;
+
+            case 1:
+                fillRect(0, 0, 160, 124, BLACK);
+                fillRect(0, 46, 160, 17, RED);
+                setCursor(3, 47);
+                setTextSize(1);
+                print("Sn96.5Ag3Cu0.5");
+                setCursor(3, 67);
+                print("Sn62Pb36Ag2");
+                showed = 1;
+                break;
+
+            case 2:
+                fillRect(0, 0, 160, 124, BLACK);
+                setCursor(3, 47);
+                setTextSize(1);;
+                print("Sn96.5Ag3Cu0.5");
+                fillRect(0, 66, 160, 17, RED);
+                setCursor(3, 67);
+                print("Sn62Pb36Ag2");
+                showed = 1;
+                break;
+            }
+        }
+    }
+    
     void preheatTempControl()
     {
         if (showed == 0 || changed == 1)
@@ -312,7 +433,7 @@ public:
         }
     }
 
-    void changeScreen(int screen1, int screen2, int screen3, int changeViewType, bool changeToAnalogParam, int parameter1, int parameter2)
+    void changeScreen(int screen1, int screen2, int screen3, int changeViewType, bool changeToAnalogParam, bool changeMode, bool changeTemp, int parameter1, int parameter2)
     {
         if (press == 1)
         {
@@ -330,7 +451,18 @@ public:
                     count = parameter1;
                     num = parameter1;
                 }
+                if(changeMode)
+                {
+                    plateu = true;
+                }
                 break;
+
+                if(changeTemp)
+                {
+                    preheatTemp = 155;
+                    reflowTemp = 210;
+                }
+
             case 2:
                 userPick = screen2;
                 press = 0;
@@ -343,6 +475,19 @@ public:
                     count = parameter2;
                     num = parameter2;
                 }
+
+                if(changeMode)
+                {
+                    plateu = false;
+                }
+
+
+                if(changeTemp)
+                {
+                    preheatTemp = 155;
+                    reflowTemp = 220;
+                }
+
                 break;
             case 3:
                 userPick = screen3;
