@@ -253,7 +253,7 @@ public:
                 setTextSize(2);
                 print("Preheat");
                 setCursor(48, 67);
-                print("Reflow");
+                print("Peak");
                 showed = 1;
 
                 break;
@@ -265,7 +265,7 @@ public:
                 setTextSize(2);
                 print("Preheat");
                 setCursor(48, 67);
-                print("Reflow");
+                print("Peak");
                 showed = 1;
                 break;
 
@@ -276,7 +276,7 @@ public:
                 print("Preheat");
                 fillRect(0, 66, 160, 17, RED);
                 setCursor(48, 67);
-                print("Reflow");
+                print("Peak");
                 showed = 1;
                 break;
             }

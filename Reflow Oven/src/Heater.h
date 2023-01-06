@@ -3,7 +3,8 @@
 class Heater
 {
 private:
-    
+
+    float currentMillisf, lastMillisf = 0;
     volatile int power = 100;
     const int timeOnToCompare = 100;
     volatile int timeOn = timeOnToCompare;
@@ -12,9 +13,12 @@ private:
     int timeOffCount = 0;
     bool hotOn = false;
     volatile bool swOn = false;
+    
 
 
 public:
+
+    
     Heater()
     {
     }
@@ -23,6 +27,7 @@ public:
     {
         //Serial.print("Power = ");
         //Serial.println(power);
+        currentMillisf = millis();
         if(swOn == false)
         {
             return;
@@ -34,7 +39,16 @@ public:
                 hotOn = true;
                 analogWrite(heaterPin, 255);
             }
+            if(timeOnCount == 100)
+            {
+                lastMillisf = currentMillisf;
+                Serial.print("Okres PWM wynosi");
+                Serial.print(lastMillisf);
+            }
             timeOnCount++;
+            
+
+
             return;
         }
         if (timeOffCount < timeOff)
