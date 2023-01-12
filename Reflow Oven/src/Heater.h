@@ -25,8 +25,7 @@ public:
 
     void Start()
     {
-        //Serial.print("Power = ");
-        //Serial.println(power);
+
         currentMillisf = millis();
         if(swOn == false)
         {
@@ -38,12 +37,6 @@ public:
             {
                 hotOn = true;
                 analogWrite(heaterPin, 255);
-            }
-            if(timeOnCount == 100)
-            {
-                lastMillisf = currentMillisf;
-                Serial.print("Okres PWM wynosi");
-                Serial.print(lastMillisf);
             }
             timeOnCount++;
             

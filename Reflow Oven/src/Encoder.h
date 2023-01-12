@@ -3,15 +3,13 @@
 class Encoder
 {
 private:
-    /* data */
-public:
-    // Variables
 
-    // Constructor
-    Encoder(/* args */)
+public:
+
+    Encoder()
     {
     }
-    // Methods
+
     static void blinkA()
     {
         if ((millis() - time1) > 3)

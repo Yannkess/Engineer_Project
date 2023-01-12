@@ -23,7 +23,7 @@ int time = 0;
 int processTime = 0;
 float temp = 0;
 float temp1 = 0;
-//PWN
+//PWM
 int interval = 4000;  // Control time with pwn signal
 int interval2 = 500;
 const int oneSecond = 1000; // Data reading time. 1000 = 1s.
@@ -31,7 +31,7 @@ int cycle = 0;
 //Display
 // Temperatures to set
 int preheatTemp = 155;
-int reflowTemp = 220;
+int peakTemp = 220;
 //Process
 int stage = 0;
 bool started = false;

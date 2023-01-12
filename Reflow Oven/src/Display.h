@@ -11,13 +11,13 @@ private:
     int lastMilis1 = 0;
 
 public:
-    // Variables
+
     int time = 0;
     float temp = 0;
     int prevTime = 0;
     float dispprevTemp = 0;
     float dispTemp = 0;
-    // Constructor
+
     Display(uint8_t cspin, uint8_t dcpin, int _time, float _temp, uint8_t rstpin = 255)
         : TFT_ILI9163C(cspin, dcpin, rstpin)
 
@@ -25,7 +25,7 @@ public:
         time = _time;
         temp = _temp;
     }
-    // Methods
+
     void showResolution()
     {
         print(width());
@@ -68,12 +68,12 @@ public:
         setCursor(2, 60);
         print("Temp = ");
         println(temp);
-        // temp =  thermo.temperature(RNOMINAL, RREF);
+
     }
 
     void drawChart()
     {
-        // drawPixel(time, 128-dispTemp, CYAN);
+
         drawLine(prevTime, maxY - dispprevTemp, time, maxY - dispTemp, CYAN);
         prevTime = time;
         dispprevTemp = dispTemp;
@@ -421,14 +421,14 @@ public:
         }
     }
 
-    void reflowTempControl()
+    void peakTempControl()
     {
         if (showed == 0 || changed == 1)
         {
             fillRect(0, 0, 160, 124, BLACK);
             setCursor(63, 58);
             setTextSize(2);
-            print(reflowTemp);
+            print(peakTemp);
             showed = 1;
         }
     }
@@ -460,7 +460,7 @@ public:
                 if(changeTemp)
                 {
                     preheatTemp = 155;
-                    reflowTemp = 210;
+                    peakTemp = 210;
                 }
 
             case 2:
@@ -485,7 +485,7 @@ public:
                 if(changeTemp)
                 {
                     preheatTemp = 155;
-                    reflowTemp = 220;
+                    peakTemp = 220;
                 }
 
                 break;

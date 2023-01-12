@@ -54,12 +54,6 @@ void reflowSoldering()
     {
       processTime += 1;
       lastMilis2 = currentMilis;
-      /*
-      Serial.print("Process Time Stage 1: ");
-      Serial.print(processTime);
-      Serial.print("       temp = ");
-      Serial.println(temp);
-      */
     }
 
     if (processTime >= 60)
@@ -72,9 +66,9 @@ void reflowSoldering()
 
   case 2:
 
-    pid.setPoint = reflowTemp+10;
+    pid.setPoint = peakTemp+10;
 
-    if (temp1 < reflowTemp)
+    if (temp1 < peakTemp)
     {
       pid.start();
     }
@@ -84,15 +78,9 @@ void reflowSoldering()
       processTime += 1;
       lastMilis2 = currentMilis;
       temp1 = temp;
-      /*
-      Serial.print("Process Time Stage 2: ");
-      Serial.print(processTime);
-      Serial.print("       temp = ");
-      Serial.println(temp);
-      */
     }
 
-    if (temp1 >= reflowTemp)
+    if (temp1 >= peakTemp)
     {
       stage = 3;
       processTime = 0;
@@ -102,12 +90,6 @@ void reflowSoldering()
 
   case 3:
     heater.Off();
-    /*
-    Serial.print("Im in stage 3");
-    Serial.print("       temp = ");
-    Serial.println(temp);
-    analogWrite(A0, 0);
-    */
 
     if (temp <= 100)
     {
@@ -169,7 +151,7 @@ void menu()
   case 4:
     encoder.analogButtonControl(2);
     display.temperaturesMenu();
-    display.changeScreen(5, 6, 0, 0, true,false,false, preheatTemp, reflowTemp);
+    display.changeScreen(5, 6, 0, 0, true,false,false, preheatTemp, peakTemp);
     break;
 
   case 5:
@@ -179,8 +161,8 @@ void menu()
     break;
 
   case 6:
-    reflowTemp = num;
-    display.reflowTempControl();
+    peakTemp = num;
+    display.peakTempControl();
     display.changeScreen(0, 0, 0, 0, false,false,false, 0, 0);
     break;
 

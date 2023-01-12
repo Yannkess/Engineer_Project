@@ -44,14 +44,7 @@ public:
             Pout = Kp*error;
             Iout = Ki*errorSum;
             Dout = Kd *derror;
-            /*
-            Serial.print("Człon P = ");
-            Serial.print(Pout);
-            Serial.print("  Człon i = ");
-            Serial.print(Iout);
-            Serial.print("  Człon D = ");
-            Serial.println(Dout);
-            */
+
 
             if(Iout > 100)
             {
@@ -76,8 +69,6 @@ public:
             }
 
             heater.SetPower(output);
-            /*Serial.print("  Output = ");
-            Serial.println(output);*/
             lastMillis = currentMillis;
             lastError = error;
 
